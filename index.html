@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+<title>Project 3</title>
+<style>
+body {
+	font-family: Verdana, Helvetica, sans-serif;
+}
+canvas {
+	border: 1px solid black
+}
+</style>
+<script>
+
+function makeTitle() {
+	var lines = [
+		['Meditative', 'Objective', 'Reflective', 'Mother', 'Cosmic', 'Fiery', 'Mysterious', 'Massive', 'Lumpy'],
+		['Ellipses', 'Transformation', 'State', 'Emotion', 'Composition', 'Butts', 'System', 'King', 'Steel'],
+		['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII']
+	];
+	var title = '';
+	for(var i = 0; i < lines.length; i++) {
+		var random = Math.floor(Math.random() * lines[i].length);
+		title += lines[i][random] + ' '
+	};
+	return(title);
+}
+
+function artHandler() {
+	var title = makeTitle();
+	console.log(title);
+
+	var canvas = document.getElementById('artCanvas');
+	var context = canvas.getContext('2d');
+
+	fillBackgroundColor(canvas, context);
+
+	var colors = [ 'black', 'yellow', 'blue', 'red', 'green', 'orange', 'teal'];
+	for(var i=0; i<5; i++) {
+		var color = colors[Math.floor(Math.random() * colors.length)];
+		var random = Math.floor(Math.random() * 20);
+			drawCircle(canvas, context, color);
+		}
+	for(var i=0; i<5; i++) {
+		var color = colors[Math.floor(Math.random() * colors.length)];
+		var random = Math.floor(Math.random() * 20);
+		drawSquare(canvas, context, color);
+
+	}
+	for(var i=0; i<5; i++) {
+		var color = colors[Math.floor(Math.random() * colors.length)];
+		var random = Math.floor(Math.random() * 20);
+		drawTriangle(canvas, context, color);
+	}
+	for(var i=0; i<5; i++) {
+		var color = colors[Math.floor(Math.random() * colors.length)];
+		var random = Math.floor(Math.random() * 20);
+		drawIrr(canvas, context, color);
+	}
+	for(var i=0;i<5;i++) {
+		var color = colors[Math.floor(Math.random() * colors.length)];
+		var random = Math.floor(Math.random() * 20);
+		drawHeart(canvas, context, color);
+	}
+	for(var i=0;i<1;i++) {
+		var color = colors[Math.floor(Math.random() * colors.length)];
+		var random = Math.floor(Math.random() * 20);
+		drawBubble(canvas, context, color);
+	}
+	drawText(canvas, context, title); 
+	return setInterval(artHandler, 300);
+	}
+
+
+function fillBackgroundColor(canvas, context) {
+	var grd = context.createLinearGradient(0,0,200,300);
+	 	 grd.addColorStop(0,"red");
+		 grd.addColorStop(1,"white");
+		 // Fill with gradient
+		 context.fillStyle = grd;
+		 context.fillRect(10,10,150,80);
+		 context.fillStyle = grd;
+		 context.fillRect(0, 0, canvas.width, canvas.height);
+
+}
+
+function degreesToRadians(degrees) {
+	return(degrees * Math.PI) / 180;
+}
+
+function drawSquare(canvas, context, color) {
+	var side = Math.floor(Math.random() * 40);
+	var x = Math.floor(Math.random() * canvas.width);
+	var y = Math.floor(Math.random() * canvas.height);
+
+	context.fillStyle = color
+	context.fillRect(x, y, side, side)
+}
+
+function drawCircle(canvas, context, color){
+	var radius = Math.floor(Math.random() * 40);
+	var x = Math.floor(Math.random() * canvas.width);
+	var y = Math.floor(Math.random() * canvas.height);
+
+	context.beginPath();
+	context.arc(x, y, radius, 0, degreesToRadians(360), true) ;
+	context.fillStyle = color;
+	context.fill();
+}
+
+function drawTriangle(canvas, context, color) {
+	var side = Math.floor(Math.random() * 40);
+	var x = Math.floor(Math.random() * canvas.width);
+	var y = Math.floor(Math.random() * canvas.height);
+
+	 	context.beginPath();
+	  	context.moveTo(x, y);
+	 	context.lineTo(x+50,y+25);
+   		context.lineTo(x+80,x+15);	
+   		context.fillStyle = color;		
+   		context.fill();
+	 }
+function drawIrr(canvas, context, color) {
+	var x = Math.floor(Math.random() * canvas.width);
+	var y = Math.floor(Math.random() * canvas.height);
+
+		context.beginPath();
+	  	context.moveTo(x, y);
+	 	context.lineTo(x+50,y+25);
+   		context.lineTo(x+60,x+15);	
+   		context.lineTo(x+30,x+20);
+   		context.lineTo(x+40,x+30);
+   		context.fillStyle = color;		
+   		context.fill();
+
+}
+
+function drawHeart(canvas, context, color) {
+    context.beginPath();
+    context.moveTo(75,40);
+    context.bezierCurveTo(75,37,70,25,50,25);
+    context.bezierCurveTo(20,25,20,62.5,20,62.5);
+    context.bezierCurveTo(20,80,40,102,75,120);
+    context.bezierCurveTo(110,102,130,80,130,62.5);
+    context.bezierCurveTo(130,62.5,130,25,100,25);
+    context.bezierCurveTo(85,25,75,37,75,40);
+    context.fillStyle = color;
+    context.fill();
+    
+}
+
+function drawBubble(canvas, context, color) {
+	var x = Math.floor(Math.random() * canvas.width);
+	var y = Math.floor(Math.random() * canvas.height);
+	context.beginPath();
+    context.moveTo(175,125);
+    context.quadraticCurveTo(25,25,x+25,y+62.5);
+    context.quadraticCurveTo(25,100,x+50,y+100);
+    context.quadraticCurveTo(50,120,x+30,y+125);
+    context.quadraticCurveTo(60,120,x+65,y+100);
+    context.quadraticCurveTo(125,100,x+125,y+62.5);
+    context.quadraticCurveTo(125,25,x+75,y+25);
+    context.stroke();
+}
+
+function drawText(canvas, context, title) {
+	context.fillStyle = 'black';
+	context.font = 'bold 2em sans-serif';
+	context.textAlign = 'right';
+	context.fillText(title, canvas.width-20, canvas.height-40);
+}
+window.onload = function() {
+	var button = document.getElementById('artButton');
+	button.onclick = artHandler;
+	//return setInterval(artHandler, 300);
+}
+
+</script>
+</head>
+<body>
+
+<h1>Project 3:</h1>
+<canvas width='800' height='600' id='artCanvas'></canvas><br>
+<input type = 'button' id='artButton' value='Click it nerd'>
+</form>
+</body>
+</html>
