@@ -36,39 +36,43 @@ function artHandler() {
 	fillBackgroundColor(canvas, context);
 
 	var colors = [ 'black', 'yellow', 'blue', 'red', 'green', 'orange', 'teal'];
-	for(var i=0; i<5; i++) {
-		var color = colors[Math.floor(Math.random() * colors.length)];
-		var random = Math.floor(Math.random() * 20);
+	for(var j=0;j<10;I++){
+
+		for(var i=0; i<5; i++) {
+			var color = colors[Math.floor(Math.random() * colors.length)];
+			var random = Math.floor(Math.random() * 20);
 			drawCircle(canvas, context, color);
 		}
-	for(var i=0; i<5; i++) {
-		var color = colors[Math.floor(Math.random() * colors.length)];
-		var random = Math.floor(Math.random() * 20);
-		drawSquare(canvas, context, color);
+		for(var i=0; i<5; i++) {
+			var color = colors[Math.floor(Math.random() * colors.length)];
+			var random = Math.floor(Math.random() * 20);
+			drawSquare(canvas, context, color);
 
-	}
-	for(var i=0; i<5; i++) {
-		var color = colors[Math.floor(Math.random() * colors.length)];
-		var random = Math.floor(Math.random() * 20);
-		drawTriangle(canvas, context, color);
-	}
-	for(var i=0; i<5; i++) {
-		var color = colors[Math.floor(Math.random() * colors.length)];
-		var random = Math.floor(Math.random() * 20);
-		drawIrr(canvas, context, color);
-	}
-	for(var i=0;i<5;i++) {
-		var color = colors[Math.floor(Math.random() * colors.length)];
-		var random = Math.floor(Math.random() * 20);
-		drawHeart(canvas, context, color);
-	}
-	for(var i=0;i<1;i++) {
-		var color = colors[Math.floor(Math.random() * colors.length)];
-		var random = Math.floor(Math.random() * 20);
-		drawBubble(canvas, context, color);
-	}
-	drawText(canvas, context, title); 
-	return setInterval(artHandler, 300);
+		}
+		for(var i=0; i<5; i++) {
+			var color = colors[Math.floor(Math.random() * colors.length)];
+			var random = Math.floor(Math.random() * 20);
+			drawTriangle(canvas, context, color);
+		}
+		for(var i=0; i<5; i++) {
+			var color = colors[Math.floor(Math.random() * colors.length)];
+			var random = Math.floor(Math.random() * 20);
+			drawIrr(canvas, context, color);
+		}
+		for(var i=0;i<5;i++) {
+			var color = colors[Math.floor(Math.random() * colors.length)];
+			var random = Math.floor(Math.random() * 20);
+			drawHeart(canvas, context, color);
+		}
+		for(var i=0;i<1;i++) {
+			var color = colors[Math.floor(Math.random() * colors.length)];
+			var random = Math.floor(Math.random() * 20);
+			drawBubble(canvas, context, color);
+		}
+		drawText(canvas, context, title); 
+
+		return setInterval(artHandler, 300);
+		}
 	}
 
 
@@ -164,15 +168,17 @@ function drawBubble(canvas, context, color) {
 }
 
 function drawText(canvas, context, title) {
+	var x = Math.floor(Math.random() * canvas.width);
+	var y = Math.floor(Math.random() * canvas.height);
+
 	context.fillStyle = 'black';
 	context.font = 'bold 2em sans-serif';
 	context.textAlign = 'right';
-	context.fillText(title, canvas.width-20, canvas.height-40);
+	context.fillText(title, x, y);
 }
 window.onload = function() {
 	var button = document.getElementById('artButton');
 	button.onclick = artHandler;
-	//return setInterval(artHandler, 300);
 }
 
 </script>
